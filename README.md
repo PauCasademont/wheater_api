@@ -1,2 +1,2 @@
-# clash_royale_api
+# Weather React API
 Web app with react
