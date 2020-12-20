@@ -1,15 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { TextField } from "@material-ui/core";
 
 function  SearchBar({onSubmit}) {
 
-    const [searchTerm, setSearchTerm] = useState('')
-
-    const handleChange = (event) => setSearchTerm(event.target.value);
-
     const onKeyPress = (event) => {
         if (event.key === "Enter") {
-          onSubmit(searchTerm);
+          onSubmit(event.target.value);
         }
       }
 
@@ -17,8 +13,7 @@ function  SearchBar({onSubmit}) {
         <TextField 
             id="filled-basic"
             label="Region" 
-            variant="filled" 
-            onChange={handleChange}
+            variant="filled"             
             onKeyPress={onKeyPress}
         />      
     )
