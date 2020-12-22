@@ -36,7 +36,8 @@ function App() {
                 })                      
 
             }).catch(error => {
-                console.log(error)
+                console.log(error)                
+                setWeather({})
                 swal({
                     title: "Error finding location",
                     text: `Location ${region} does not exist`,
