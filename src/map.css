@@ -1,7 +1,8 @@
 .leaflet-container {
     position: relative;
     margin: auto;
-    width: 70%;
+    width: 90%;
     height: 60vh;
     top: 30px;
 }
+
