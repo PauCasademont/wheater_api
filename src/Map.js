@@ -1,10 +1,11 @@
 import React, {useState} from 'react'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import { Grid, Button, Box } from "@material-ui/core"
-
+import { LocationOn, MyLocation } from "@material-ui/icons"
 import './map.css'
 
 const zoom = 13;
+const initialMapConfig = { coord: [30,10], zoom: 2}
 
 function Map({ regionCoord, regionName }) {
 
@@ -16,10 +17,10 @@ function Map({ regionCoord, regionName }) {
         map.flyTo(regionCoord, zoom)
       };
 
-      return ( <Button
-                pt={20} 
+      return ( <Button              
                 variant="contained"
                 color="primary"
+                startIcon={<LocationOn/>}
                 className="button"
                 onClick={onClick}
                 >
@@ -36,10 +37,10 @@ function Map({ regionCoord, regionName }) {
         map.on('locationfound', handleOnLocationFound)
       };
 
-      return ( <Button 
-                pt={20}
+      return ( <Button               
                 variant="contained"
                 color="primary"
+                startIcon={<MyLocation/>}
                 className="button"
                 onClick={onClick}
                 >
@@ -56,22 +57,22 @@ function Map({ regionCoord, regionName }) {
         <>
             <Grid container >
                 <Grid item xs={10}>
-                    {regionCoord && <MapContainer                     
-                        center={regionCoord} 
-                        zoom={zoom}
+                    <MapContainer                     
+                        center={initialMapConfig.coord} 
+                        zoom={initialMapConfig.zoom}
                         whenCreated={setMap}                    
                         >
                         <TileLayer
                             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         />       
-                        <Marker position={regionCoord}>
+                        { regionCoord && <Marker position={regionCoord}>
                           <Popup>{regionName}</Popup>
-                        </Marker>
+                        </Marker>}
                         {coord && <Marker position={coord}>
-                          <Popup>You are here or close xD</Popup>
+                          <Popup>You are here</Popup>
                         </Marker>}                   
-                    </MapContainer>}                               
+                    </MapContainer>                              
                 </Grid>
                 <Grid item xs={2}>
                   <Box pt={10}>

@@ -12,7 +12,7 @@ function  SearchBar({ setRegion }) {
     return (        
         <TextField 
             id="filled-basic"
-            label="Region" 
+            label="Location" 
             variant="filled"             
             onKeyPress={onKeyPress}
         />      
