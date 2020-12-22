@@ -26,7 +26,7 @@ function App() {
             }).then(res => {
                 
                 setWeather({
-                    regionName: region,
+                    regionName: region.charAt(0).toUpperCase() + region.slice(1),
                     description: res.data.weather[0].description,
                     temperature: ((res.data.main.temp - 273.15).toFixed(2)).toString() + ' ºC'
                 })   
