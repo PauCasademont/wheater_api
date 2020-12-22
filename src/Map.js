@@ -10,11 +10,15 @@ const initialMapConfig = { coord: [30,10], zoom: 2}
 function Map({ regionCoord, regionName }) {
 
     const [map, setMap] = useState(null); 
-    const [coord, setCoord] = useState(null)   
+    const [coord, setCoord] = useState(null);
+    const [locationPressed, setLocationPressed] = useState(false);
 
     function FlyToButton() {
       const onClick = () => {
-        map.flyTo(regionCoord, zoom)
+        if(regionCoord){
+          setLocationPressed(true)
+          map.flyTo(regionCoord, zoom)
+        }
       };
 
       return ( <Button              
@@ -66,7 +70,7 @@ function Map({ regionCoord, regionName }) {
                             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         />       
-                        { regionCoord && <Marker position={regionCoord}>
+                        {locationPressed && <Marker position={regionCoord}>
                           <Popup>{regionName}</Popup>
                         </Marker>}
                         {coord && <Marker position={coord}>
