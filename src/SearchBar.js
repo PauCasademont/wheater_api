@@ -1,11 +1,11 @@
 import React from 'react';
 import { TextField } from "@material-ui/core";
 
-function  SearchBar({onSubmit}) {
+function  SearchBar({ setRegion }) {
 
     const onKeyPress = (event) => {
         if (event.key === "Enter") {
-          onSubmit(event.target.value);
+          setRegion(event.target.value);
         }
       }
 
